@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mi-configuracion
+  namespace: taller-k8s
+data:
+  database.properties: |
+    host=localhost
+    port=5432
+    name=mibase
+  modo_debug: "true"
+  max_conexiones: "100"

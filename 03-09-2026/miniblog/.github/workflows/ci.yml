@@ -1,0 +1,22 @@
+name: CI del miniblog
+
+on:
+  push:
+    branches: [docs/kubernetes-minikube]
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install -r requirements.txt
+        working-directory: 03-09-2026/miniblog
+
+      - run: python -m pytest -v
+        working-directory: 03-09-2026/miniblog

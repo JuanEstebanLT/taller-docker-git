@@ -1,0 +1,31 @@
+name: CI MiniBlog
+
+on:
+  push:
+    branches:
+      - docs/kubernetes-minikube
+
+  workflow_dispatch:
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: 03-09-2026/miniblog
+
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v7
+
+      - name: Configurar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar pruebas
+        run: python -m pytest -v
